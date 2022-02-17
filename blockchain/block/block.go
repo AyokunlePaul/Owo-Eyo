@@ -9,16 +9,16 @@ import (
 
 type Block struct {
 	PreviousHash string
-	Data         []byte
+	Data         string
 	Hash         string
 	Index        int
 	Timestamp    string
-	Proof        int
+	Nonce        int
 }
 
 func (block *Block) DeriveHash() {
 	blockInfo := bytes.Join([][]byte{
-		block.Data,
+		[]byte(block.Data),
 		[]byte(block.PreviousHash),
 		[]byte(block.Timestamp),
 		[]byte(strconv.Itoa(block.Index))},
